@@ -46,6 +46,13 @@ jobs:
           cd Packwiz/26.2
           ../../packwiz/packwiz modrinth export -o ../../Fabulously.Optimized-custom-26.2.mrpack
 
+      - name: Publish to GitHub Release
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload latest-build Fabulously.Optimized-custom-26.2.mrpack --clobber
+
       - name: Upload artifact
         if: steps.check.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
