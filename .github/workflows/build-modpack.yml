@@ -1,0 +1,71 @@
+name: Build modpack
+
+on:
+  workflow_run:
+    workflows: ["Sync with upstream"]
+    types: [completed]
+  push:
+    branches: [custom-26.2]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  build:
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: custom-26.2
+
+      - name: Check changes since last build
+        id: check
+        run: |
+          if git rev-parse origin/last-built >/dev/null 2>&1 && [ "$(git rev-parse origin/last-built)" = "$(git rev-parse HEAD)" ]; then
+            echo "No changes since last build; skipping"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Download packwiz
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          curl -sL -o packwiz.zip "https://github.com/starxjys/fabulously-optimized/releases/download/packwiz-cli/packwiz-linux-amd64.zip"
+          unzip -o packwiz.zip -d packwiz
+          chmod +x packwiz/packwiz
+
+      - name: Export mrpack
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          cd Packwiz/26.2
+          ../../packwiz/packwiz modrinth export -o ../../Fabulously.Optimized-custom-26.2.mrpack
+
+      - name: Upload artifact
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fabulously.Optimized-custom-26.2
+          path: Fabulously.Optimized-custom-26.2.mrpack
+          if-no-files-found: error
+
+      - name: Update last-built tag
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git tag -f last-built HEAD
+          git push origin last-built --force
+
+      - name: Clean up old artifacts
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          IDs=$(gh api "repos/starxjys/fabulously-optimized/actions/artifacts?name=Fabulously.Optimized-custom-26.2" --jq '.artifacts[] | select(.workflow_run.id != '"${{ github.run_id }}"') | .id' 2>/dev/null || true)
+          for id in $IDs; do
+            gh api --method DELETE "repos/starxjys/fabulously-optimized/actions/artifacts/$id"
+          done
