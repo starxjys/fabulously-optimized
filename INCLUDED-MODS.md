@@ -118,3 +118,9 @@ Mods that make other mods work. Hidden from in-game mod menu, but should not be 
 | [MidnightLib](https://www.curseforge.com/minecraft/mc-mods/midnightlib) | [TeamMidnightDust](https://www.curseforge.com/members/TeamMidnightDust) |  |  | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | Makes some mods work |
 | LightConfig | [lowercasebtw](https://legacy.curseforge.com/members/lowercasebtw/) |  |  |  |  |  |  |  |  |  | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | Makes Skyboxify work |
 | [YetAnotherConfigLib](https://www.curseforge.com/minecraft/mc-mods/yacl) | [XanderIsDev](https://www.curseforge.com/members/xanderisdev) |  |  |  | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | &nbsp;&nbsp;✅ | Makes some mods' config work |
+
+## Personal fork changes (MC 26.2 / custom-26.2 branch)
+
+- Removed: [Cape Provider](https://www.curseforge.com/minecraft/mc-mods/cape-provider) (kept in older FO versions as listed above)
+- Added: [CustomSkinLoader](https://modrinth.com/mod/customskinloader) (15.0.1-Universal) - skin & cape loading
+- Added: [Voxy](https://modrinth.com/mod/voxy) (0.2.18-beta) - unlimited render distance (LODs; shaders need explicit voxy support)
