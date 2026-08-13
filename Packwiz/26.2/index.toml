@@ -373,6 +373,11 @@ hash = "00129db538fe3591d87ba64731ca1f9daf3e538185657ee0fcf56b52f0715e5b"
 metafile = true
 
 [[files]]
+file = "mods/onekeyminer_nf.pw.toml"
+hash = "cae4a8041684711a9b08f61e92f58fe2ee4302d67dca00966c61342495d7b302"
+metafile = true
+
+[[files]]
 file = "mods/optigui.pw.toml"
 hash = "14295613bad47c511a2d86a07ed6779e73d66ba3c56419fa4f0e8ce25ab761bf"
 metafile = true

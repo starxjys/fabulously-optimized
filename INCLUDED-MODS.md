@@ -126,3 +126,4 @@ Mods that make other mods work. Hidden from in-game mod menu, but should not be 
 - Added: [Voxy](https://modrinth.com/mod/voxy) (0.2.18-beta) - unlimited render distance (LODs; shaders need explicit voxy support)
 - Added: [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) (fabric-26.2-26.4.2) - minimap
 - Added: [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) (fabric-26.2-1.44.2) - full-screen world map
+- Added: [OneKeyMiner](https://modrinth.com/mod/onekeyminer_nf) (26.2-1.6.9-fabric) - hold-to-chain mining & farming
