@@ -40,6 +40,11 @@ jobs:
           unzip -o packwiz.zip -d packwiz
           chmod +x packwiz/packwiz
 
+      - name: Stamp build version
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          sed -i "s/^version = \"\(.*\)\"/version = \"\1+custom-$(date -u +%Y%m%d)\"/" Packwiz/26.2/pack.toml
+
       - name: Export mrpack
         if: steps.check.outputs.changed == 'true'
         run: |
