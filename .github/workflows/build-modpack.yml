@@ -44,6 +44,7 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: |
           sed -i "s/^version = \"\(.*\)\"/version = \"\1+custom-$(date -u +%Y%m%d)\"/" Packwiz/26.2/pack.toml
+          echo "PKG_VER=$(sed -n 's/^version = "\(.*\)"/\1/p' Packwiz/26.2/pack.toml)" >> "$GITHUB_ENV"
 
       - name: Export mrpack
         if: steps.check.outputs.changed == 'true'
@@ -56,6 +57,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          {
+            echo "Fabulously Optimized (personal) — MC 26.2"
+            echo ""
+            echo "- 构建: $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "- 版本: ${PKG_VER}"
+            echo "- commit: $(git rev-parse --short HEAD)"
+            echo ""
+            echo "自定义差异（相对上游）："
+            echo "- 移除: Cape Provider"
+            echo "- 新增: CustomSkinLoader, voxy, Chat Heads, Xaero's Minimap, Xaero's World Map"
+            echo ""
+            echo "HMCL 导入: 下载本文件 → 版本列表 → 导入 Modrinth 包"
+          } > notes.md
+          gh release edit latest-build --notes-file notes.md
           gh release upload latest-build Fabulously.Optimized-custom-26.2.mrpack --clobber
 
       - name: Upload artifact
