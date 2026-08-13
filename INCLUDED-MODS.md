@@ -124,3 +124,5 @@ Mods that make other mods work. Hidden from in-game mod menu, but should not be 
 - Removed: [Cape Provider](https://www.curseforge.com/minecraft/mc-mods/cape-provider) (kept in older FO versions as listed above)
 - Added: [CustomSkinLoader](https://modrinth.com/mod/customskinloader) (15.0.1-Universal) - skin & cape loading
 - Added: [Voxy](https://modrinth.com/mod/voxy) (0.2.18-beta) - unlimited render distance (LODs; shaders need explicit voxy support)
+- Added: [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) (fabric-26.2-26.4.2) - minimap
+- Added: [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) (fabric-26.2-1.44.2) - full-screen world map
