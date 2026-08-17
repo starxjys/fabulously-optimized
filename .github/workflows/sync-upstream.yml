@@ -23,6 +23,8 @@ jobs:
 
       - name: Fetch upstream
         run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           git remote add upstream https://github.com/Fabulously-Optimized/fabulously-optimized.git
           git fetch upstream main
 
