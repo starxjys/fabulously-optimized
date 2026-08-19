@@ -5,7 +5,7 @@ on:
     workflows: ["Sync with upstream"]
     types: [completed]
   push:
-    branches: [custom-26.2]
+    branches: [custom-26.2, rso-26.2]
   workflow_dispatch:
 
 permissions:
@@ -15,18 +15,33 @@ permissions:
 jobs:
   build:
     if: github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run'
+    strategy:
+      matrix:
+        include:
+          - branch: custom-26.2
+            pkg: Fabulously.Optimized-custom-26.2.mrpack
+            release: custom-latest-build
+            reltitle: "Fabulously Optimized (personal) — MC 26.2"
+            tag: last-built
+            artifact: custom-26.2
+          - branch: rso-26.2
+            pkg: Fabulously.Optimized-rso-26.2.mrpack
+            release: rso-latest-build
+            reltitle: "Fabulously Optimized (personal) — MC 26.2 RSO 生电整合"
+            tag: last-built-rso-26.2
+            artifact: rso-26.2
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: custom-26.2
+          ref: ${{ matrix.branch }}
 
       - name: Check changes since last build
         id: check
         run: |
-          if git rev-parse origin/last-built >/dev/null 2>&1 && [ "$(git rev-parse origin/last-built)" = "$(git rev-parse HEAD)" ]; then
+          if git rev-parse origin/${{ matrix.tag }} >/dev/null 2>&1 && [ "$(git rev-parse origin/${{ matrix.tag }})" = "$(git rev-parse HEAD)" ]; then
             echo "No changes since last build; skipping"
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
@@ -50,49 +65,65 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: |
           cd Packwiz/26.2
-          ../../packwiz/packwiz modrinth export -o ../../Fabulously.Optimized-custom-26.2.mrpack
+          ../../packwiz/packwiz modrinth export -o ../../${{ matrix.pkg }}
 
       - name: Publish to GitHub Release
         if: steps.check.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          {
-            echo "Fabulously Optimized (personal) — MC 26.2"
-            echo ""
-            echo "- 构建: $(date -u '+%Y-%m-%d %H:%M UTC')"
-            echo "- 版本: ${PKG_VER}"
-            echo "- commit: $(git rev-parse --short HEAD)"
-            echo ""
-            echo "自定义差异（相对上游）："
-            echo "- 移除: Cape Provider"
-            echo "- 新增: CustomSkinLoader, voxy, Chat Heads, Xaero's Minimap, Xaero's World Map, OneKeyMiner"
-            echo ""
-            echo "HMCL 导入: 下载本文件 → 版本列表 → 导入 Modrinth 包"
-          } > notes.md
-          gh release edit latest-build --notes-file notes.md
-          gh release upload latest-build Fabulously.Optimized-custom-26.2.mrpack --clobber
+          gh release view ${{ matrix.release }} >/dev/null 2>&1 || gh release create ${{ matrix.release }} --title "${{ matrix.reltitle }}" --notes "init"
+          if [ "${{ matrix.branch }}" = "rso-26.2" ]; then
+            {
+              echo "${{ matrix.reltitle }}"
+              echo ""
+              echo "- 构建: $(date -u '+%Y-%m-%d %H:%M UTC')"
+              echo "- 版本: ${PKG_VER}"
+              echo "- commit: $(git rev-parse --short HEAD)"
+              echo ""
+              echo "基于 custom-26.2（去 Cape Provider，加 CustomSkinLoader/voxy/Chat Heads/OneKeyMiner），"
+              echo "整合 RSO 生电优化（红石/技术向）mod 集，小地图由 Xaero 换为 JourneyMap。"
+              echo ""
+              echo "HMCL 导入: 下载本文件 → 版本列表 → 导入 Modrinth 包"
+            } > notes.md
+          else
+            {
+              echo "${{ matrix.reltitle }}"
+              echo ""
+              echo "- 构建: $(date -u '+%Y-%m-%d %H:%M UTC')"
+              echo "- 版本: ${PKG_VER}"
+              echo "- commit: $(git rev-parse --short HEAD)"
+              echo ""
+              echo "自定义差异（相对上游）："
+              echo "- 移除: Cape Provider"
+              echo "- 新增: CustomSkinLoader, voxy, Chat Heads, Xaero's Minimap, Xaero's World Map, OneKeyMiner"
+              echo ""
+              echo "HMCL 导入: 下载本文件 → 版本列表 → 导入 Modrinth 包"
+            } > notes.md
+          fi
+          gh release edit ${{ matrix.release }} --notes-file notes.md
+          gh release upload ${{ matrix.release }} ${{ matrix.pkg }} --clobber
 
       - name: Upload artifact
         if: steps.check.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: Fabulously.Optimized-custom-26.2
-          path: Fabulously.Optimized-custom-26.2.mrpack
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.pkg }}
           if-no-files-found: error
 
       - name: Update last-built tag
         if: steps.check.outputs.changed == 'true'
         run: |
-          git tag -f last-built HEAD
-          git push origin last-built --force
+          git tag -f ${{ matrix.tag }} HEAD
+          git push origin ${{ matrix.tag }} --force
 
       - name: Clean up old artifacts
         if: steps.check.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          IDs=$(gh api "repos/starxjys/fabulously-optimized/actions/artifacts?name=Fabulously.Optimized-custom-26.2" --jq '.artifacts[] | select(.workflow_run.id != '"${{ github.run_id }}"') | .id' 2>/dev/null || true)
+          IDs=$(gh api "repos/starxjys/fabulously-optimized/actions/artifacts?name=${{ matrix.artifact }}" --jq '.artifacts[] | select(.workflow_run.id != '"'"'${{ github.run_id }}'"'"') | .id' 2>/dev/null || true)
           for id in $IDs; do
             gh api --method DELETE "repos/starxjys/fabulously-optimized/actions/artifacts/$id"
           done
