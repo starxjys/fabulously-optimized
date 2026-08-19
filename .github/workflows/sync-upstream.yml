@@ -40,3 +40,10 @@ jobs:
           git checkout -B custom-26.2 origin/custom-26.2
           git merge --no-edit upstream/main
           git push origin custom-26.2
+
+      - name: Merge upstream into rso-26.2
+        run: |
+          git fetch origin rso-26.2
+          git checkout -B rso-26.2 origin/rso-26.2
+          git merge --no-edit upstream/main
+          git push origin rso-26.2
