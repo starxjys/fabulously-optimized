@@ -1,0 +1,13 @@
+name = "DawnGuiReader"
+filename = "DawnGuiReader-1.3.0.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/bJNYg6Np/versions/49xOOAEh/DawnGuiReader-1.3.0.jar"
+hash-format = "sha512"
+hash = "1f28419486a581848b7fdcafbd561ded2f82dbe27c9cbd86c210839fcadaf837096225d37247f77c057f7c91b623b0c4fed0131688b0a8a7d9bff1ac5878ee49"
+
+[update]
+[update.modrinth]
+mod-id = "bJNYg6Np"
+version = "49xOOAEh"

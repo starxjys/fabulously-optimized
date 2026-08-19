@@ -1,0 +1,13 @@
+name = "Punchy!"
+filename = "punchy-2.7c-fabric-26.2.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/8aoMKplv/versions/wznUomCV/punchy-2.7c-fabric-26.2.jar"
+hash-format = "sha512"
+hash = "4ee8702a645a34936d6c485eb8e55c269669e61c9b09ebbc2647fd60efc2947c1a4f2db6e4bffaaf013534f596c8afb1e25500eaf8f60938cec08d8e372658b3"
+
+[update]
+[update.modrinth]
+mod-id = "8aoMKplv"
+version = "wznUomCV"

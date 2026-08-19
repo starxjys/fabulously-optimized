@@ -127,3 +127,16 @@ Mods that make other mods work. Hidden from in-game mod menu, but should not be 
 - Added: [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) (fabric-26.2-26.4.2) - minimap
 - Added: [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) (fabric-26.2-1.44.2) - full-screen world map
 - Added: [OneKeyMiner](https://modrinth.com/mod/onekeyminer_nf) (26.2-1.6.9-fabric) - hold-to-chain mining & farming
+
+## Personal fork changes (MC 26.2 / rso-26.2 branch)
+
+Same as custom-26.2, except:
+- Removed: [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap), [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) (replaced by JourneyMap)
+- Added: [JourneyMap](https://modrinth.com/mod/journeymap) (26.2-6.0.5+fabric) - minimap / fullscreen map / web map
+
+RSO (红石生电优化) technical mod set added on top:
+- Redstone/technical: MaLiLib, Litematica, Axiom, Flashback, Carpet, Tweakeroo, MiniHUD, ItemScroller, Litematica Printer, Servux, Pistorder
+- QoL: AppleSkin, Jade, Inventory Profiles Next, Clumps, Bobby, Dynamic Crosshair, Better Statistics Screen, Sounds, Resourcify, Blur+, Punchy!, ItemSwapper, Peek, Chest Tracker (unofficial port), DawnGuiReader
+- UI: FancyMenu, Controlling
+- Auto-added deps: libIPN, Searchables, Konkrete, Melody, TCDCommons API, MRU
+- Not included (no required dependents): Collective, Balm, GeckoLib, MidnightLib

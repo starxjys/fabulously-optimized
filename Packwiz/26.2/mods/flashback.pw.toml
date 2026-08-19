@@ -1,0 +1,13 @@
+name = "Flashback"
+filename = "Flashback-0.42.2-for-MC26.2.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/4das1Fjq/versions/BbRYOGo5/Flashback-0.42.2-for-MC26.2.jar"
+hash-format = "sha512"
+hash = "1ea9c3f2f40ffdec951a9357685a3dfc77768d03eaeead0955118aafffe1fd5065d7a6221dfecb2ae4bb38bb01af4d9c124f5893b974fab933c59acbbee3bbae"
+
+[update]
+[update.modrinth]
+mod-id = "4das1Fjq"
+version = "BbRYOGo5"
