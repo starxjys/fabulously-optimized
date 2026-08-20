@@ -140,3 +140,4 @@ RSO (红石生电优化) technical mod set added on top:
 - UI: FancyMenu, Controlling
 - Auto-added deps: libIPN, Searchables, Konkrete, Melody, TCDCommons API, MRU
 - Not included (no required dependents): Collective, Balm, GeckoLib, MidnightLib
+- Disabled: Controlify (FO default mod kept as `.disabled` - ItemSwapper 1.0.0-beta.2 declares a missing `controlify` entrypoint class and crashes startup when Controlify is present; re-enable after ItemSwapper ships a fixed 26.2 build)
