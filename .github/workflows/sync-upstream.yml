@@ -38,12 +38,36 @@ jobs:
         run: |
           git fetch origin custom-26.2
           git checkout -B custom-26.2 origin/custom-26.2
-          git merge --no-edit upstream/main
+          if ! git merge --no-edit upstream/main; then
+            # 预期冲突：仅 Packwiz/26.2/pack.toml 的 [index].hash 行（两边都重算过）
+            # 正确解 = 合并后 index.toml 的 sha256（version 行 git 已自动合并取上游）
+            CONFLICTS=$(git diff --name-only --diff-filter=U)
+            if [ "$CONFLICTS" != "Packwiz/26.2/pack.toml" ]; then
+              echo "Unexpected conflicts:"; echo "$CONFLICTS"; exit 1
+            fi
+            git checkout --theirs Packwiz/26.2/pack.toml
+            NEWHASH=$(sha256sum Packwiz/26.2/index.toml | cut -d' ' -f1)
+            sed -i "s|^hash = .*|hash = \"$NEWHASH\"|" Packwiz/26.2/pack.toml
+            git add Packwiz/26.2/pack.toml
+            git commit --no-edit
+          fi
           git push origin custom-26.2
 
       - name: Merge upstream into rso-26.2
         run: |
           git fetch origin rso-26.2
           git checkout -B rso-26.2 origin/rso-26.2
-          git merge --no-edit upstream/main
+          if ! git merge --no-edit upstream/main; then
+            # 预期冲突：仅 Packwiz/26.2/pack.toml 的 [index].hash 行（两边都重算过）
+            # 正确解 = 合并后 index.toml 的 sha256（version 行 git 已自动合并取上游）
+            CONFLICTS=$(git diff --name-only --diff-filter=U)
+            if [ "$CONFLICTS" != "Packwiz/26.2/pack.toml" ]; then
+              echo "Unexpected conflicts:"; echo "$CONFLICTS"; exit 1
+            fi
+            git checkout --theirs Packwiz/26.2/pack.toml
+            NEWHASH=$(sha256sum Packwiz/26.2/index.toml | cut -d' ' -f1)
+            sed -i "s|^hash = .*|hash = \"$NEWHASH\"|" Packwiz/26.2/pack.toml
+            git add Packwiz/26.2/pack.toml
+            git commit --no-edit
+          fi
           git push origin rso-26.2
