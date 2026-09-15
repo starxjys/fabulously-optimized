@@ -11,6 +11,34 @@ Chaos Cubed is here and with it comes the early support for Vulkan graphics API!
 - When enabling Vulkan, a few mods may stop working, e.g. you cannot use Iris Shaders with it
 - OpenGL remains supported and no deprecation deadline has been set
 
+### 14.1.0 (2026-09-13)
+
+- Updated Iris Shaders, Mod Menu, Polytone, Sodium
+  - Sodium has updated with several fixes
+- Mod Menu Helper update
+  - Shortened initial tutorial
+  - Added contextual messages on language and resource pack options
+  - Updated MMH description
+  - Added partial support for Upside Down English, Shakespearean English, LOLCAT
+- Updated Crash Assistant config
+  - Added crash cause detections for wrong: Minecraft version, mod loader, Fabric Loader version, Java version
+  - Copied logs message now mentions modpack version, Minecraft version, launcher (beta)
+  - Improved phrasing for other strings in the crash popup
+
+### 14.0.0 (2026-09-10)
+
+Major changes from 13.4.0 to 14.0.0:
+
+- Added Renice Shot - a fork of Fabrishot
+- Added Text Placeholder API - a dependency of Mod Menu that was previously bundled in it; allows certain formatted texts in mod descriptions
+- Updated Fabric Loader to 0.19.5
+
+Changes from beta 7 to release:
+
+- Added Renice Shot - a fork of Fabrishot
+- Updated Entity Model Features, Entity Texture Features, Fabric API, Fabric Language Kotlin, LambDynamicLights, Polytone
+- Updated Fabric Loader to 0.19.5
+
 ### 14.0.0-beta.7 (2026-08-30)
 
 - Updated Fabric API, ImmediatelyFast, No Chat Reports, Polytone
@@ -118,6 +146,21 @@ Changes:
 # Tiny Takeover (13.x.x)
 
 ## 26.1.2
+
+### 13.5.0 (2026-09-13)
+
+- Updated Controlify, Entity Model Features, Entity Texture Features, Fabric API, Fabric Language Kotlin, LambDynamicLights, Mod Menu, Polytone
+  - Sodium update is pending Iris update approval on CurseForge
+- Mod Menu Helper update
+  - Shortened initial tutorial
+  - Added contextual messages on language and resource pack options
+  - Updated MMH description
+  - Added partial support for Upside Down English, Shakespearean English, LOLCAT
+- Updated Crash Assistant config
+  - Added crash cause detections for wrong: Minecraft version, mod loader, Fabric Loader version, Java version
+  - Copied logs message now mentions modpack version, Minecraft version, launcher (beta)
+  - Improved phrasing for other strings in the crash popup
+- Updated Fabric Loader to 0.19.5
 
 ### 13.4.0 (2026-08-30)
 
