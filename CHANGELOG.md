@@ -1,6 +1,46 @@
 # Fabulously Optimized changelog
 This is the changelog for the Fabric modpack [Fabulously Optimized](https://www.curseforge.com/minecraft/modpacks/fabulously-optimized). See the [version support FAQ](https://wiki.download.fo/version-support).
 
+# Wilderness Bound (15.x.x)
+
+## 26.3
+
+### 15.0.0-alpha.4 (2026-09-27)
+
+- Readded Controlify, Debugify, Skyboxify, YetAnotherConfigLib, Zoomify
+- Updated Crash Assistant, Cloth Config, Entity Culling, Forge Config API Port, Ixeris, Mod Menu, ModernFix-mVUS, Reese's Sodium Options
+  - Sodium update skipped as it is an alpha
+- Updated Ukrainian translation
+- Temporarily removed: Cubes Without Borders, Language Reload, No Chat Reports, Paginated Advancements, Polytone, Puzzle
+
+### 15.0.0-alpha.3 (2026-09-20)
+
+- Readded Animatica Refabricated, Entity Culling, ImmediatelyFast, Ixeris, OptiGUI, Remove Reloading Screen, Sodium Shadowy Path Blocks
+  - Skipped Skyboxify due to lack of compatible YACL in CurseForge
+- Updated Cape Provider, Entity Model Features, Entity Texture Features, Fabric API
+- Removed Cape Provider's Mod Menu workaround
+- Updated Estonian, Hebrew, Malay (Latin, Jawi), Chinese Traditional translations
+- Temporarily removed: Controlify, Cubes Without Borders, Debugify, Language Reload, No Chat Reports, Paginated Advancements, Polytone, Puzzle, Skyboxify, YetAnotherConfigLib, Zoomify
+
+### 15.0.0-alpha.2 (2026-09-16)
+
+- Removed Ixeris for now due to crashes
+- Temporary removed: Animatica Refabricated, Controlify, Cubes Without Borders, Debugify, Entity Culling, ImmediatelyFast, Ixeris, Language Reload, No Chat Reports, OptiGUI, Paginated Advancements, Polytone, Puzzle, Remove Reloading Screen, Sodium Shadowy Path Blocks, Skyboxify, YetAnotherConfigLib, Zoomify
+
+### 15.0.0-alpha.1 (2026-09-16)
+
+This is an early experimental version.
+
+- Make a new instance for testing
+- Expect and report bugs
+- Only add content that is marked as compatible with Minecraft 26.3.
+
+Changes
+
+- Updated Better Block Entities, BetterGrassify, Continuity, Crash Assistant, Cloth Config, Dynamic FPS, Entity Model Features, Entity Texture Features, Fabric API, Forge Config API Port, Iris Shaders, LambDynamicLights, Lithium, ModernFix-mVUS, Mod Menu, MoreCulling, Reese's Sodium Options, Renice Shot, Sodium, Sodium Extra
+- Hid Cape Provider's config GUI from Mod Menu as it crashes
+- Temporary removed: Animatica Refabricated, Controlify, Cubes Without Borders, Debugify, Entity Culling, ImmediatelyFast, Language Reload, No Chat Reports, OptiGUI, Paginated Advancements, Polytone, Puzzle, Remove Reloading Screen, Sodium Shadowy Path Blocks, Skyboxify, YetAnotherConfigLib, Zoomify
+
 # Chaos Cubed (14.x.x)
 
 ## 26.2
@@ -10,6 +50,34 @@ Chaos Cubed is here and with it comes the early support for Vulkan graphics API!
 - Vulkan is _not_ enabled by default and Mojang does _not_ recommend most users to use it just yet
 - When enabling Vulkan, a few mods may stop working, e.g. you cannot use Iris Shaders with it
 - OpenGL remains supported and no deprecation deadline has been set
+
+### 14.1.0 (2026-09-13)
+
+- Updated Iris Shaders, Mod Menu, Polytone, Sodium
+  - Sodium has updated with several fixes
+- Mod Menu Helper update
+  - Shortened initial tutorial
+  - Added contextual messages on language and resource pack options
+  - Updated MMH description
+  - Added partial support for Upside Down English, Shakespearean English, LOLCAT
+- Updated Crash Assistant config
+  - Added crash cause detections for wrong: Minecraft version, mod loader, Fabric Loader version, Java version
+  - Copied logs message now mentions modpack version, Minecraft version, launcher (beta)
+  - Improved phrasing for other strings in the crash popup
+
+### 14.0.0 (2026-09-10)
+
+Major changes from 13.4.0 to 14.0.0:
+
+- Added Renice Shot - a fork of Fabrishot
+- Added Text Placeholder API - a dependency of Mod Menu that was previously bundled in it; allows certain formatted texts in mod descriptions
+- Updated Fabric Loader to 0.19.5
+
+Changes from beta 7 to release:
+
+- Added Renice Shot - a fork of Fabrishot
+- Updated Entity Model Features, Entity Texture Features, Fabric API, Fabric Language Kotlin, LambDynamicLights, Polytone
+- Updated Fabric Loader to 0.19.5
 
 ### 14.0.0-beta.7 (2026-08-30)
 
@@ -118,6 +186,21 @@ Changes:
 # Tiny Takeover (13.x.x)
 
 ## 26.1.2
+
+### 13.5.0 (2026-09-13)
+
+- Updated Controlify, Entity Model Features, Entity Texture Features, Fabric API, Fabric Language Kotlin, LambDynamicLights, Mod Menu, Polytone
+  - Sodium update is pending Iris update approval on CurseForge
+- Mod Menu Helper update
+  - Shortened initial tutorial
+  - Added contextual messages on language and resource pack options
+  - Updated MMH description
+  - Added partial support for Upside Down English, Shakespearean English, LOLCAT
+- Updated Crash Assistant config
+  - Added crash cause detections for wrong: Minecraft version, mod loader, Fabric Loader version, Java version
+  - Copied logs message now mentions modpack version, Minecraft version, launcher (beta)
+  - Improved phrasing for other strings in the crash popup
+- Updated Fabric Loader to 0.19.5
 
 ### 13.4.0 (2026-08-30)
 
